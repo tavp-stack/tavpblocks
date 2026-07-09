@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"Tavp\\Blocks\\Tests\\BlockRegistryTest::testShipsMoreThanFortyBlocks":0.025,"Tavp\\Blocks\\Tests\\BlockRegistryTest::testModuleCanRegisterBlock":0.001,"Tavp\\Blocks\\Tests\\BlockRegistryTest::testUnknownBlockNotPresent":0}}
