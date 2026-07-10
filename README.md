@@ -27,9 +27,38 @@ Target: 40+ komponen jadi yang tinggal dipakai.
 
 ### Phase 2 (0.4.0) — 25+ more components
 
-tabs, accordion, file-upload, rich-editor, date-picker, chart,
-stat-card, form-group, confirm-dialog, loading-spinner, breadcrumb,
-tooltip, progress-bar, stepper, timeline, and more.
+| Component | Description |
+|---|---|
+| `x-tabs` | Tabbed content panels |
+| `x-accordion` | Collapsible sections |
+| `x-file-upload` | Drag-and-drop file upload |
+| `x-rich-editor` | WYSIWYG rich text editor |
+| `x-date-picker` | Date selection widget |
+| `x-color-picker` | Color selection widget |
+| `x-stat-card` | Statistics display card |
+| `x-form-group` | Labeled form field wrapper |
+| `x-confirm-dialog` | Confirmation modal |
+| `x-loading-spinner` | Loading indicators |
+| `x-breadcrumb` | Breadcrumb navigation |
+| `x-tooltip` | Hover tooltips |
+| `x-progress-bar` | Progress indicators |
+| `x-stepper` | Multi-step wizard |
+| `x-timeline` | Timeline display |
+
+### CMS Controls (0.4.0) — Specialized form controls for tavp-cms
+
+| Component | Description |
+|---|---|
+| `x-media-picker` | Browse/select from media library |
+| `x-relation-picker` | Select related content records |
+| `x-tags-input` | Enter and manage tag lists |
+| `x-seo-editor` | SEO meta title + description + OG image |
+| `x-block-editor` | Gutenberg/Twill-style block-based content |
+| `x-code-editor` | JSON/code editor with syntax highlighting |
+| `x-taxonomy-browser` | Browse categories and tags |
+| `x-revision-viewer` | View revision history |
+| `x-search-results` | Search result display |
+| `x-api-explorer` | API endpoint testing |
 
 ## Requirements
 
@@ -54,6 +83,12 @@ composer require tavp/tavpblocks
 {{ button('Click me', ['variant' => 'primary']) }}
 {{ input('name', ['label' => 'Your Name', 'required' => true]) }}
 {{ modal('confirm-delete', 'Are you sure?') }}
+
+<!-- CMS controls -->
+{{ media_picker('featured_image', ['label' => 'Featured Image']) }}
+{{ relation_picker('categories', ['type' => 'category', 'multiple' => true]) }}
+{{ tags_input('tags', ['label' => 'Tags']) }}
+{{ seo_editor('seo', ['title' => $record['title'] ?? '']) }}
 ```
 
 ## Styling
@@ -74,7 +109,7 @@ composer test
 
 ## Status
 
-Part of **0.1.0 Genesis** (ZeroVer `0.MINOR.PATCH`). 15 basic components.
+Part of **0.2.0 Mature** (ZeroVer `0.MINOR.PATCH`). 15 basic + 10 CMS controls.
 Full 40+ in `0.4.0`.
 
 ## License
