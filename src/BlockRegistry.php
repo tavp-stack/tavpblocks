@@ -7,45 +7,46 @@ namespace Tavp\Blocks;
 /**
  * Registry of TAVPblocks UI components.
  *
- * 40+ components spanning form controls, feedback, data display and
- * navigation. Each block renders as a Volt/Alpine snippet. The registry
- * is the single source of truth for what blocks exist and lets modules
- * register additional ones.
+ * Each block has a PHP class that renders HTML.
+ * Components can be used in Volt templates or PHP.
  */
 class BlockRegistry
 {
+    /** @var array<string, class-string<Component>> */
     private const BLOCKS = [
-        // Form controls (BLK-002/003/004)
-        'Button', 'Input', 'Select', 'Textarea', 'Toggle', 'Checkbox', 'Radio',
-        'FileUpload', 'DatePicker', 'RichEditor',
-        // Overlays & feedback
-        'Modal', 'Dropdown', 'Toast', 'Alert', 'Skeleton', 'EmptyState', 'ConfirmDialog',
-        // Data display
-        'Card', 'Badge', 'Avatar', 'Datatable', 'Pagination', 'StatCard', 'Tabs',
-        'Accordion', 'Tooltip', 'Breadcrumb', 'Chart', 'ProgressBar',
-        // Navigation & layout
-        'Navbar', 'Sidebar', 'Footer', 'Menu', 'Stepper', 'Carousel',
-        // Auth & misc
-        'OtpInput', 'LoginForm', 'LoadingSpinner', 'FormGroup', 'TagInput',
-        'ColorPicker', 'RangeSlider', 'NotificationBell', 'SearchBar', 'Timeline',
+        'Button' => Components\Button::class,
+        'Card' => Components\Card::class,
+        'Alert' => Components\Alert::class,
+        'Badge' => Components\Badge::class,
+        'Modal' => Components\Modal::class,
+        'Tabs' => Components\Tabs::class,
+        'Pagination' => Components\Pagination::class,
+        'StatCard' => Components\StatCard::class,
+        'Datatable' => Components\Datatable::class,
+        'Skeleton' => Components\Skeleton::class,
+        'Breadcrumb' => Components\Breadcrumb::class,
     ];
 
     private array $extra = [];
 
     /**
      * Return all built-in block names.
+     *
+     * @return string[]
      */
     public function builtIn(): array
     {
-        return self::BLOCKS;
+        return array_keys(self::BLOCKS);
     }
 
     /**
      * Return built-in blocks plus any registered by modules.
+     *
+     * @return string[]
      */
     public function all(): array
     {
-        return array_values(array_unique(array_merge(self::BLOCKS, $this->extra)));
+        return array_values(array_unique(array_merge(array_keys(self::BLOCKS), array_keys($this->extra))));
     }
 
     public function count(): int
@@ -59,12 +60,36 @@ class BlockRegistry
     }
 
     /**
-     * Register a custom block from a module.
+     * Get the class for a block.
      */
-    public function register(string $name): void
+    public function getClass(string $name): ?string
+    {
+        return self::BLOCKS[$name] ?? $this->extra[$name] ?? null;
+    }
+
+    /**
+     * Create a block instance.
+     */
+    public function make(string $name, array $props = []): ?Component
+    {
+        $class = $this->getClass($name);
+
+        if ($class === null || !class_exists($class)) {
+            return null;
+        }
+
+        return new $class(...$props);
+    }
+
+    /**
+     * Register a custom block from a module.
+     *
+     * @param class-string<Component> $class
+     */
+    public function register(string $name, string $class): void
     {
         if (!$this->has($name)) {
-            $this->extra[] = $name;
+            $this->extra[$name] = $class;
         }
     }
 }
