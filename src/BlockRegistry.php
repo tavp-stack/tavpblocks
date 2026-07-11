@@ -70,6 +70,9 @@ class BlockRegistry
         'Clipboard' => Components\Clipboard::class,
         'ShareButtons' => Components\ShareButtons::class,
         'BackToTop' => Components\BackToTop::class,
+        'Chart' => Components\Chart::class,
+        'Gauge' => Components\Gauge::class,
+        'PieChart' => Components\PieChart::class,
     ];
 
     private array $extra = [];
