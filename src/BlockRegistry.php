@@ -25,6 +25,15 @@ class BlockRegistry
         'Datatable' => Components\Datatable::class,
         'Skeleton' => Components\Skeleton::class,
         'Breadcrumb' => Components\Breadcrumb::class,
+        'Accordion' => Components\Accordion::class,
+        'ProgressBar' => Components\ProgressBar::class,
+        'Tooltip' => Components\Tooltip::class,
+        'Avatar' => Components\Avatar::class,
+        'EmptyState' => Components\EmptyState::class,
+        'LoadingSpinner' => Components\LoadingSpinner::class,
+        'SearchBar' => Components\SearchBar::class,
+        'NotificationBell' => Components\NotificationBell::class,
+        'Timeline' => Components\Timeline::class,
     ];
 
     private array $extra = [];
