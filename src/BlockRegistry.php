@@ -73,6 +73,13 @@ class BlockRegistry
         'Chart' => Components\Chart::class,
         'Gauge' => Components\Gauge::class,
         'PieChart' => Components\PieChart::class,
+        'LineChart' => Components\LineChart::class,
+        'BarChart' => Components\BarChart::class,
+        'RadarChart' => Components\RadarChart::class,
+        'DoughnutChart' => Components\DoughnutChart::class,
+        'PolarAreaChart' => Components\PolarAreaChart::class,
+        'BubbleChart' => Components\BubbleChart::class,
+        'ScatterChart' => Components\ScatterChart::class,
     ];
 
     private array $extra = [];
