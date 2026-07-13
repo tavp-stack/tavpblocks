@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tavp\Blocks;
+namespace Tavp\Blocks\Components;
 
 /**
  * Base class for all TAVPblocks components.

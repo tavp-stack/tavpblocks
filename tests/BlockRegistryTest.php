@@ -14,7 +14,7 @@ class BlockRegistryTest extends TestCase
         $registry = new BlockRegistry();
         $this->assertGreaterThanOrEqual(40, $registry->count());
         $this->assertContains('Button', $registry->builtIn());
-        $this->assertContains('OtpInput', $registry->builtIn());
+        $this->assertContains('SearchBar', $registry->builtIn());
     }
 
     public function testModuleCanRegisterBlock(): void

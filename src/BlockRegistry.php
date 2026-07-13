@@ -12,7 +12,7 @@ namespace Tavp\Blocks;
  */
 class BlockRegistry
 {
-    /** @var array<string, class-string<Component>> */
+    /** @var array<string, class-string<Components\Component>> */
     private const BLOCKS = [
         'Button' => Components\Button::class,
         'Card' => Components\Card::class,
@@ -184,7 +184,7 @@ class BlockRegistry
     /**
      * Create a block instance.
      */
-    public function make(string $name, array $props = []): ?Component
+    public function make(string $name, array $props = []): ?Components\Component
     {
         $class = $this->getClass($name);
 
@@ -198,12 +198,17 @@ class BlockRegistry
     /**
      * Register a custom block from a module.
      *
-     * @param class-string<Component> $class
+     * When $class is omitted it is derived from the block name
+     * (Tavp\Blocks\Components\{Name}).
+     *
+     * @param class-string<Components\Component> $class
      */
-    public function register(string $name, string $class): void
+    public function register(string $name, ?string $class = null): void
     {
-        if (!$this->has($name)) {
-            $this->extra[$name] = $class;
+        if ($this->has($name)) {
+            return;
         }
+
+        $this->extra[$name] = $class ?? ('Tavp\\Blocks\\Components\\' . $name);
     }
 }
