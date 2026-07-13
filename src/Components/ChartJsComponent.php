@@ -94,8 +94,8 @@ HTML;
             return '<div class="text-gray-500 text-sm">No data</div>';
         }
 
-        $html = '<div class="w-full">';
-        $html .= '<canvas id="' . $this->canvasId . '" width="' . $this->width . '" height="' . $this->height . '"></canvas>';
+        $html = '<div class="w-full h-full" style="position:relative;">';
+        $html .= '<canvas id="' . $this->canvasId . '" style="display:block;width:100%!important;height:100%!important;"></canvas>';
         $html .= $this->renderChartJsScript();
         $html .= '</div>';
 

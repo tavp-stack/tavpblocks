@@ -18,11 +18,11 @@ class Button extends Component
     public function render(): string
     {
         $classes = match ($this->variant) {
-            'primary' => 'bg-blue-600 text-white hover:bg-blue-700',
-            'secondary' => 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+            'primary' => 'bg-brand-600 text-white hover:bg-brand-700',
+            'secondary' => 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600',
             'danger' => 'bg-red-600 text-white hover:bg-red-700',
-            'ghost' => 'bg-transparent text-gray-600 hover:bg-gray-100',
-            default => 'bg-blue-600 text-white hover:bg-blue-700',
+            'ghost' => 'bg-transparent text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800',
+            default => 'bg-brand-600 text-white hover:bg-brand-700',
         };
 
         $sizeClass = match ($this->size) {

@@ -20,30 +20,32 @@ class Pagination extends Component
         }
 
         $html = '<nav class="flex items-center justify-between">';
-        $html .= '<div class="text-sm text-gray-500">Page ' . $this->currentPage . ' of ' . $this->totalPages . '</div>';
+        $html .= '<div class="text-sm text-gray-500 dark:text-gray-400">Page ' . $this->currentPage . ' of ' . $this->totalPages . '</div>';
         $html .= '<div class="flex gap-1">';
 
-        // Previous
         if ($this->currentPage > 1) {
-            $html .= '<a href="' . $this->baseUrl . '?page=' . ($this->currentPage - 1) . '" class="px-3 py-1 text-sm border rounded hover:bg-gray-50">Prev</a>';
+            $html .= $this->link($this->baseUrl . '?page=' . ($this->currentPage - 1), 'Prev');
         }
 
-        // Page numbers
         for ($i = 1; $i <= $this->totalPages; $i++) {
             if ($i === $this->currentPage) {
-                $html .= '<span class="px-3 py-1 text-sm bg-blue-600 text-white rounded">' . $i . '</span>';
+                $html .= '<span class="rounded-lg bg-brand-600 px-3 py-1 text-sm text-white">' . $i . '</span>';
             } else {
-                $html .= '<a href="' . $this->baseUrl . '?page=' . $i . '" class="px-3 py-1 text-sm border rounded hover:bg-gray-50">' . $i . '</a>';
+                $html .= $this->link($this->baseUrl . '?page=' . $i, (string) $i);
             }
         }
 
-        // Next
         if ($this->currentPage < $this->totalPages) {
-            $html .= '<a href="' . $this->baseUrl . '?page=' . ($this->currentPage + 1) . '" class="px-3 py-1 text-sm border rounded hover:bg-gray-50">Next</a>';
+            $html .= $this->link($this->baseUrl . '?page=' . ($this->currentPage + 1), 'Next');
         }
 
         $html .= '</div></nav>';
 
         return $html;
+    }
+
+    private function link(string $url, string $label): string
+    {
+        return '<a href="' . $url . '" class="rounded-lg border border-gray-300 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">' . $label . '</a>';
     }
 }
